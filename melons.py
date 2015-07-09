@@ -1,8 +1,16 @@
 """This file should have our melon-type classes in it."""
-class Melons(object):
-    base_price = 1.0
+class _Melons(object):
+    base_price = 5.0
 
-class WatermelonOrder(Melons):
+    def __new__(cls):
+        if cls is _Melons:
+            raise TypeError("You can't sell plain melons")
+        return object.__new__(cls)
+
+    def get_price(self, qty):
+        print "HEY SALESPERSON!!! You can't sell a PLAIN melon!"
+
+class WatermelonOrder(_Melons):
     species = "Watermelon"
     color = "green"
     imported = False
@@ -18,7 +26,7 @@ class WatermelonOrder(Melons):
 
         return total
 
-class CantaloupeOrder(Melons):
+class CantaloupeOrder(_Melons):
     species = "Cantaloupe"
     color = "tan"
     imported = False
@@ -34,7 +42,7 @@ class CantaloupeOrder(Melons):
 
         return total
 
-class CasabaOrder(Melons):
+class CasabaOrder(_Melons):
     species = "Casaba"
     color = "green"
     imported = True
@@ -47,7 +55,7 @@ class CasabaOrder(Melons):
 
         return total
 
-class SharlynOrder(Melons):
+class SharlynOrder(_Melons):
     species = "Sharlyn"
     color = "tan"
     imported = True
@@ -59,7 +67,7 @@ class SharlynOrder(Melons):
         total = qty * self.base_price * 1.5
         return total
 
-class SantaClausOrder(Melons):
+class SantaClausOrder(_Melons):
     species = "Santa Claus"
     color = "green"
     imported = True
@@ -71,7 +79,7 @@ class SantaClausOrder(Melons):
         total = qty * self.base_price * 1.5
         return total
 
-class ChristmasOrder(Melons):
+class ChristmasOrder(_Melons):
     species = "Christmas"
     color = "green"
     imported = "False"
@@ -83,7 +91,7 @@ class ChristmasOrder(Melons):
         total = qty * self.base_price
         return total
 
-class HornedMelonOrder(Melons):
+class HornedMelonOrder(_Melons):
     species = "Horned Melon"
     color = "yellow"
     imported = True
@@ -95,7 +103,7 @@ class HornedMelonOrder(Melons):
         total = qty * self.base_price
         return total
 
-class XiguaOrder(Melons):
+class XiguaOrder(_Melons):
     species = "Xigua"
     color = "black"
     imported = True
@@ -107,7 +115,7 @@ class XiguaOrder(Melons):
         total = qty * self.base_price * 2 * 1.5
         return total
 
-class OgenOrder(Melons):
+class OgenOrder(_Melons):
     species = "Ogen"
     color = "tan"
     imported = False
